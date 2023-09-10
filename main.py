@@ -42,12 +42,23 @@ async def shutdown():
 
 
 #rutas 
+"""
+Ruta para obtener a los entrenadores 
+:param void: no se requieren parámetros 
+:return object: Se obtendrá como respuesta un objeto, dentro del atributo trainers contendrá un array de objetos Trainer
+"""
 @app.get('/trainers')
 async def get_trainers():
     db = SessionLocal()
     trainers = db.query(Trainer).all()
     return {'trainers': trainers}
 
+
+"""
+Ruta para obtener a los especialistas 
+:param void: no se requieren parámetros 
+:return object: Se obtendrá como respuesta un objeto, dentro del atributo specialists contendrá un array de objetos Specialist
+"""
 @app.get('/specialists')
 async def get_specialists():
     db = SessionLocal()
