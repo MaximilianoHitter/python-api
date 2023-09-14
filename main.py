@@ -54,6 +54,13 @@ async def get_trainers():
     return {'trainers': trainers}
 
 
+@app.get('/trainers/{id}')
+async def get_trainer(id):
+    db = SessionLocal()
+    trainers = db.query(Trainer).filter_by(id=id).first()
+    return {'trainers': trainers}
+
+
 """
 Ruta para obtener a los especialistas 
 :param void: no se requieren parámetros 
@@ -63,4 +70,10 @@ Ruta para obtener a los especialistas
 async def get_specialists():
     db = SessionLocal()
     specialists = db.query(Specialist).all()
+    return {'specialists': specialists}
+
+@app.get('/specialists/{id}')
+async def get_specialists(id):
+    db = SessionLocal()
+    specialists = db.query(Specialist).filter_by(id=id).first()
     return {'specialists': specialists}
